@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -eu
+set -eux
 
 mkdir -p "${SERVER_DIR}"
 cd "${SERVER_DIR}"
@@ -20,6 +20,7 @@ motd=${MOTD}
 level-name=${LEVEL_NAME}
 difficulty=${DIFFICULTY}
 online-mode=${ONLINE_MODE}
+max-players=${MAX_PLAYERS}
 EOF
 
 exec java "-Xms${MEMORY_MIN}" "-Xmx${MEMORY_MAX}" -jar /opt/minecraft/server.jar nogui

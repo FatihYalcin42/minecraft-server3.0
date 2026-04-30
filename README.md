@@ -83,23 +83,12 @@ Show recent logs:
 docker compose logs --tail=80 mc-server
 ```
 
-Follow live logs:
-
-```sh
-docker compose logs -f mc-server
-```
-
 Restart the server:
 
 ```sh
 docker compose restart mc-server
 ```
 
-Rebuild the image:
-
-```sh
-docker compose build --no-cache
-```
 
 Connect from Minecraft Java Edition:
 
@@ -111,7 +100,9 @@ The server world and runtime files are stored in `./data`. This directory is mou
 
 ## Configuration
 
-Configuration is controlled through environment variables. Copy `.env.example` to `.env` and change the values there.
+Configuration is controlled through environment variables. Copy `.env.example` to `.env` and change the values there according to your needs.
+
+These environment variables are used inside the container to dynamically generate and configure the `server.properties` file for the Minecraft server.
 
 | Variable | Default | Description |
 | --- | --- | --- |
@@ -123,19 +114,22 @@ Configuration is controlled through environment variables. Copy `.env.example` t
 | `DIFFICULTY` | `easy` | Minecraft difficulty value. |
 | `MOTD` | `Docker Minecraft Server` | Message shown in the Minecraft server list. |
 | `LEVEL_NAME` | `world` | Name of the world directory. |
+| `MAX_PLAYERS` | `20` | Maximum number of players allowed on the server. |
 
 Example `.env`:
 
-```env
-EULA=true
-HOST_PORT=8888
-MEMORY_MIN=1G
-MEMORY_MAX=2G
-ONLINE_MODE=true
-DIFFICULTY=easy
-MOTD=Docker Minecraft Server
-LEVEL_NAME=world
+## Environment Setup
+
+Use the example file as a reference:
+
+[View `.env.example`](./.env.example)
+
+Or copy it:
+
+```bash
+cp .env.example .env
 ```
+
 
 For a temporary demo-client test, `ONLINE_MODE=false` can be used if the client cannot create a valid Minecraft session. For a public server, keep `ONLINE_MODE=true`.
 
@@ -182,14 +176,8 @@ The world files should still exist after the restart.
 
 - `Dockerfile`: Builds a custom Minecraft server image from a Java runtime image.
 - `docker-entrypoint.sh`: Creates the runtime configuration and starts the server.
-- `docker-compose.yaml`: Defines the `mc-server` service, port mapping, environment configuration, restart policy, and persistent volume.
 - `.env.example`: Shows the supported environment variables.
-- `.gitignore`: Excludes local runtime data, logs, and secret environment files.
-- `.dockerignore`: Keeps unnecessary files out of the Docker build context.
 - `server.jar`: Official Minecraft Java server application.
-- `Minecraft Server Checkliste.pdf`: Original project checklist.
-- `Minecraft Server Checklist - Completed.pdf`: Completed checklist summary in English.
-- `README.md`: Documents how to install, configure, run, and test the project.
 
 ## Security Notes
 

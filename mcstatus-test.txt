@@ -1,0 +1,4 @@
+Online: 0/20
+Latency: 1.62947503849864 ms
+Version: 26.1.2
+MOTD: Docker Minecraft Server
