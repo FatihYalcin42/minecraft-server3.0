@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:25-jre
 
 ENV SERVER_DIR=/data \
     MEMORY_MIN=1G \
