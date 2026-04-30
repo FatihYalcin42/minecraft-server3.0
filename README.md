@@ -15,14 +15,6 @@ A Dockerized Vanilla Minecraft Java server with persistent world storage and env
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
-
-- Custom Docker image for a Vanilla Minecraft Java server
-- No prebuilt Minecraft server image
-- Persistent world data through a local Docker volume mount
-- Configurable memory, port, difficulty, MOTD, world name, and online mode
-- Automatic container restart with `restart: unless-stopped`
-- Cloud VM friendly port mapping from `8888` to Minecraft's internal `25565`
 
 ## Requirements
 
