@@ -1,0 +1,19 @@
+services:
+  mc-server:
+    build:
+      context: .
+    container_name: mc-server
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8888}:25565"
+    environment:
+      EULA: ${EULA:-false}
+      MEMORY_MIN: ${MEMORY_MIN:-1G}
+      MEMORY_MAX: ${MEMORY_MAX:-2G}
+      SERVER_PORT: 25565
+      ONLINE_MODE: ${ONLINE_MODE:-true}
+      DIFFICULTY: ${DIFFICULTY:-easy}
+      MOTD: ${MOTD:-Docker Minecraft Server}
+      LEVEL_NAME: ${LEVEL_NAME:-world}
+    volumes:
+      - ./data:/data

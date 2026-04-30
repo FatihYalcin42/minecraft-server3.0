@@ -1,0 +1,8 @@
+.env
+.git/
+data/
+logs/
+*.log
+.DS_Store
+Minecraft Server Checkliste.pdf
+
