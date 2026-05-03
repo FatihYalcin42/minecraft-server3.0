@@ -1,0 +1,177 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 3643 >>
+stream
+BT
+/F1 18 Tf
+1 0 0 1 54.00 784.00 Tm (Minecraft Server Checklist - Completed) Tj
+/F1 10 Tf
+1 0 0 1 54.00 762.00 Tm (Date: 2026-04-30) Tj
+/F1 10 Tf
+1 0 0 1 54.00 737.00 Tm (This PDF documents the completed items from the project checklist for the custom Minecraft) Tj
+/F1 10 Tf
+1 0 0 1 54.00 722.00 Tm (server.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 695.00 Tm (Project Status) Tj
+/F1 10 Tf
+1 0 0 1 68.00 677.00 Tm ([x] Project directory was created and initialized as a Git repository.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 662.00 Tm ([x] GitHub repository was created and the local main branch was pushed.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 647.00 Tm ([x] GitHub URL is available: https://github.com/FatihYalcin42/minecraft-server) Tj
+/F1 10 Tf
+1 0 0 1 68.00 632.00 Tm ([x] Minecraft server runs locally and on the cloud VM.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 617.00 Tm ([x] Minecraft client connection to the VM server was successful.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 593.00 Tm (1. Repository) Tj
+/F1 10 Tf
+1 0 0 1 68.00 575.00 Tm ([x] .gitignore exists and excludes local runtime files.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 560.00 Tm ([x] docker-compose.yaml exists and defines the mc-server service.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 545.00 Tm ([x] README.md exists and is written in English.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 530.00 Tm ([x] All additional files are named and described in the README.md.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 515.00 Tm ([x] server.jar exists in the repository and is used by the Dockerfile.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 491.00 Tm (2. Dockerfile) Tj
+/F1 10 Tf
+1 0 0 1 68.00 473.00 Tm ([x] Dockerfile exists.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 458.00 Tm ([x] A custom image is built from eclipse-temurin:25-jre.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 443.00 Tm ([x] No prebuilt Minecraft Docker image is used.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 428.00 Tm ([x] server.jar is copied into the image.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 413.00 Tm ([x] docker-entrypoint.sh is copied and made executable.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 398.00 Tm ([x] Port 25565 is exposed inside the container.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 383.00 Tm ([x] The server starts with Java in nogui mode.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 368.00 Tm ([x] Java 25 is used because the selected server.jar requires this runtime.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 344.00 Tm (3. docker-compose.yaml) Tj
+/F1 10 Tf
+1 0 0 1 68.00 326.00 Tm ([x] The mc-server service is defined.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 311.00 Tm ([x] Build configuration points to the local Dockerfile.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 296.00 Tm ([x] Container name mc-server is configured.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 281.00 Tm ([x] Restart policy unless-stopped is configured.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 266.00 Tm ([x] Port mapping 8888:25565 is configured.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 251.00 Tm ([x] Environment variables are configurable.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 236.00 Tm ([x] Persistent volume ./data:/data is configured.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 221.00 Tm ([x] Container data remains available after a restart.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 197.00 Tm (4. README.md) Tj
+/F1 10 Tf
+1 0 0 1 68.00 179.00 Tm ([x] Table of Contents is present.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 164.00 Tm ([x] Repository description is present.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 149.00 Tm ([x] Quickstart section is present.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 134.00 Tm ([x] Usage section is present.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 119.00 Tm ([x] Configuration and environment variables are documented.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 104.00 Tm ([x] Testing steps are documented.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 89.00 Tm ([x] Security notes are documented.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 74.00 Tm ([x] Documentation language is English.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 1923 >>
+stream
+BT
+/F1 13 Tf
+1 0 0 1 54.00 784.00 Tm (5. Security and Conventions) Tj
+/F1 10 Tf
+1 0 0 1 68.00 766.00 Tm ([x] .env is not committed.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 751.00 Tm ([x] No SSH keys are stored in the repository.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 736.00 Tm ([x] No passwords or tokens are stored in the code.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 721.00 Tm ([x] No sensitive IP addresses are committed in configuration files.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 706.00 Tm ([x] Variable names use UPPER_CASE_WITH_UNDERSCORE.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 691.00 Tm ([x] Variable references use the ${VARIABLE_NAME} notation.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 676.00 Tm ([x] Non-sensitive default values are configured in docker-compose.yaml.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 652.00 Tm (6. Testing) Tj
+/F1 10 Tf
+1 0 0 1 68.00 634.00 Tm ([x] docker compose config completed successfully.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 619.00 Tm ([x] Docker image was built successfully.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 604.00 Tm ([x] Server was started locally.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 589.00 Tm ([x] Server was started on the VM.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 574.00 Tm ([x] Logs show: Done \(...\)! For help, type "help".) Tj
+/F1 10 Tf
+1 0 0 1 68.00 559.00 Tm ([x] VM listens on port 8888.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 544.00 Tm ([x] Port mapping 0.0.0.0:8888->25565/tcp is active.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 529.00 Tm ([x] Minecraft client connection to 91.98.162.80:8888 was successful.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 514.00 Tm ([x] Persistence was confirmed by restart and existing data/world files.) Tj
+/F1 13 Tf
+1 0 0 1 54.00 490.00 Tm (7. Submission) Tj
+/F1 10 Tf
+1 0 0 1 68.00 472.00 Tm ([x] GitHub repository is online.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 457.00 Tm ([x] Project files are committed.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 442.00 Tm ([x] Server status and logs can be shown during submission.) Tj
+/F1 10 Tf
+1 0 0 1 68.00 427.00 Tm ([x] Note: Loom video is not included.) Tj
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000317 00000 n 
+0000004012 00000 n 
+0000004138 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+6113
+%%EOF

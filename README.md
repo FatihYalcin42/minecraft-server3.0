@@ -1,57 +1,63 @@
 # Minecraft Server Docker Project
 
+A Dockerized Vanilla Minecraft Java server with persistent world storage and environment-based configuration. The project is designed to run locally or on a cloud VM and exposes the server on port `8888`.
+
 ## Table of Contents
 
-- [Description](#description)
-- [Repository Contents](#repository-contents)
-- [Quickstart](#quickstart)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Testing](#testing)
+- [Repository Contents](#repository-contents)
 - [Security Notes](#security-notes)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Description
 
-This repository contains a Docker-based Vanilla Minecraft Java server. The image is built from a Java runtime base image and uses the local `server.jar` file from this repository. The server data is stored outside the container so that worlds and configuration survive container restarts.
-
-## Repository Contents
-
-- `Dockerfile`: Builds a custom Minecraft server image from a Java runtime image.
-- `docker-entrypoint.sh`: Creates the runtime configuration and starts the server.
-- `docker-compose.yaml`: Defines the `mc-server` service, port mapping, environment configuration, restart policy, and persistent volume.
-- `.env.example`: Shows the supported environment variables.
-- `.gitignore`: Excludes local runtime data, logs, and secret environment files.
-- `server.jar`: Official Minecraft Java server application.
-- `README.md`: Documents how to build, configure, run, and test the project.
-- `Minecraft Server Checkliste.pdf`: Original project checklist.
-
-## Quickstart
-
-Requirements:
+## Requirements
 
 - Docker
 - Docker Compose
-- A Java Minecraft client for optional in-game testing
+- A cloud VM or local machine that can run Docker
+- TCP port `8888` opened in the VM firewall or security group
+- Minecraft Java Edition for an in-game connection test
 
-Create your local environment file:
+## Installation
+
+1. Clone the repository:
+
+```sh
+git clone https://github.com/FatihYalcin42/minecraft-server.git
+cd minecraft-server
+```
+
+2. Create a local environment file:
 
 ```sh
 cp .env.example .env
 ```
 
-Accept the Minecraft EULA by changing this value in `.env`:
+3. Accept the Minecraft EULA in `.env`:
 
-```sh
+```env
 EULA=true
 ```
 
-Build and start the server:
+4. Build and start the server:
 
 ```sh
 docker compose up --build -d
 ```
 
-The Minecraft server is reachable on port `8888` by default:
+5. Check that the container is running:
+
+```sh
+docker compose ps
+```
+
+The server is reachable on port `8888`:
 
 ```text
 <YOUR_VM_IP>:8888
@@ -71,78 +77,121 @@ Stop the server:
 docker compose down
 ```
 
-Show logs:
+Show recent logs:
 
 ```sh
-docker compose logs -f mc-server
+docker compose logs --tail=80 mc-server
 ```
 
-Rebuild the image:
+Restart the server:
 
 ```sh
-docker compose build --no-cache
+docker compose restart mc-server
+```
+
+
+Connect from Minecraft Java Edition:
+
+```text
+<YOUR_VM_IP>:8888
 ```
 
 The server world and runtime files are stored in `./data`. This directory is mounted into the container as `/data` and is intentionally ignored by Git.
 
 ## Configuration
 
-Configuration is controlled through environment variables. Copy `.env.example` to `.env` and change the values there.
+Configuration is controlled through environment variables. Copy `.env.example` to `.env` and change the values there according to your needs.
+
+These environment variables are used inside the container to dynamically generate and configure the `server.properties` file for the Minecraft server.
 
 | Variable | Default | Description |
 | --- | --- | --- |
 | `EULA` | `false` | Must be set to `true` to accept the Minecraft EULA and start the server. |
-| `HOST_PORT` | `8888` | Host port exposed to the internet. |
+| `HOST_PORT` | `8888` | Host port exposed for Minecraft clients. |
 | `MEMORY_MIN` | `1G` | Initial JVM heap size. |
 | `MEMORY_MAX` | `2G` | Maximum JVM heap size. |
-| `ONLINE_MODE` | `true` | Enables Mojang account authentication. |
+| `ONLINE_MODE` | `true` | Enables Mojang/Microsoft account authentication. |
 | `DIFFICULTY` | `easy` | Minecraft difficulty value. |
 | `MOTD` | `Docker Minecraft Server` | Message shown in the Minecraft server list. |
 | `LEVEL_NAME` | `world` | Name of the world directory. |
+| `MAX_PLAYERS` | `20` | Maximum number of players allowed on the server. |
+
+Example `.env`:
+
+## Environment Setup
+
+Use the example file as a reference:
+
+[View `.env.example`](./.env.example)
+
+Or copy it:
+
+```bash
+cp .env.example .env
+```
+
+
+For a temporary demo-client test, `ONLINE_MODE=false` can be used if the client cannot create a valid Minecraft session. For a public server, keep `ONLINE_MODE=true`.
 
 Shell variables are referenced with the `${VARIABLE_NAME}` syntax to avoid interpretation errors. Non-sensitive defaults are configured in `docker-compose.yaml`; sensitive values should be provided through `.env` and never committed.
 
 ## Testing
 
-Before submitting the project, verify the following:
-
-1. Build succeeds:
+Verify the Compose configuration:
 
 ```sh
-docker compose build
+docker compose config
 ```
 
-2. The server starts:
+Verify that the server starts:
 
 ```sh
-docker compose up -d
-docker compose logs -f mc-server
-```
-
-3. The server listens on port `8888`:
-
-```sh
+docker compose up --build -d
 docker compose ps
+docker compose logs --tail=80 mc-server
 ```
 
-4. A Java Minecraft client can connect to:
+The logs should contain a line similar to:
 
 ```text
-<YOUR_VM_IP>:8888
+Done (...)! For help, type "help"
 ```
 
-5. Data persists after a restart:
+Verify that the VM is listening on port `8888`:
+
+```sh
+ss -tulpn | grep 8888
+```
+
+Verify persistence after a restart:
 
 ```sh
 docker compose restart mc-server
+ls data/world
 ```
 
-After the restart, the `./data` directory should still contain the world and server configuration files.
+The world files should still exist after the restart.
+
+## Repository Contents
+
+- `Dockerfile`: Builds a custom Minecraft server image from a Java runtime image.
+- `docker-entrypoint.sh`: Creates the runtime configuration and starts the server.
+- `.env.example`: Shows the supported environment variables.
+- `server.jar`: Official Minecraft Java server application.
 
 ## Security Notes
 
 - Do not commit `.env`.
 - Do not commit SSH keys.
-- Do not commit passwords, tokens, usernames, IP addresses, or other sensitive data.
+- Do not commit passwords, tokens, usernames, or other sensitive data.
 - Use environment variables for runtime configuration.
 - Keep variable names in `UPPER_CASE_WITH_UNDERSCORE`.
+- Keep `ONLINE_MODE=true` for real public servers.
+
+## Contributing
+
+This is a coursework repository and is not intended for external contributions. If you want to extend it, create a feature branch, test the Docker setup, and open a pull request with a clear description of the change.
+
+## License
+
+No license has been specified for this coursework repository. Contact the repository owner before reusing or redistributing the project.
